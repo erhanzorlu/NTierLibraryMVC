@@ -45,8 +45,7 @@ namespace Project.WinUI
             this.kucuntenB = new System.Windows.Forms.Button();
             this.txtSırala = new System.Windows.Forms.TextBox();
             this.btnGuncel = new System.Windows.Forms.Button();
-            this.btnDeneme = new System.Windows.Forms.Button();
-            this.rTxtDeneme = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstAuthors
@@ -57,10 +56,11 @@ namespace Project.WinUI
             this.lstAuthors.Name = "lstAuthors";
             this.lstAuthors.Size = new System.Drawing.Size(236, 260);
             this.lstAuthors.TabIndex = 0;
+            this.lstAuthors.SelectedIndexChanged += new System.EventHandler(this.lstAuthors_SelectedIndexChanged);
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(12, 153);
+            this.btnEkle.Location = new System.Drawing.Point(12, 118);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(112, 37);
             this.btnEkle.TabIndex = 1;
@@ -77,7 +77,7 @@ namespace Project.WinUI
             // 
             // txtSoyad
             // 
-            this.txtSoyad.Location = new System.Drawing.Point(142, 70);
+            this.txtSoyad.Location = new System.Drawing.Point(166, 70);
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(100, 22);
             this.txtSoyad.TabIndex = 5;
@@ -96,7 +96,7 @@ namespace Project.WinUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(137, 18);
+            this.label2.Location = new System.Drawing.Point(161, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 25);
             this.label2.TabIndex = 7;
@@ -104,7 +104,7 @@ namespace Project.WinUI
             // 
             // btnGuncelle
             // 
-            this.btnGuncelle.Location = new System.Drawing.Point(154, 153);
+            this.btnGuncelle.Location = new System.Drawing.Point(154, 118);
             this.btnGuncelle.Name = "btnGuncelle";
             this.btnGuncelle.Size = new System.Drawing.Size(112, 37);
             this.btnGuncelle.TabIndex = 8;
@@ -114,34 +114,37 @@ namespace Project.WinUI
             // 
             // btnSil
             // 
-            this.btnSil.Location = new System.Drawing.Point(12, 221);
+            this.btnSil.Location = new System.Drawing.Point(86, 186);
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(112, 37);
             this.btnSil.TabIndex = 9;
             this.btnSil.Text = "Sil";
             this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // btnAktif
             // 
-            this.btnAktif.Location = new System.Drawing.Point(17, 299);
+            this.btnAktif.Location = new System.Drawing.Point(532, 23);
             this.btnAktif.Name = "btnAktif";
             this.btnAktif.Size = new System.Drawing.Size(112, 37);
             this.btnAktif.TabIndex = 10;
             this.btnAktif.Text = "Aktif";
             this.btnAktif.UseVisualStyleBackColor = true;
+            this.btnAktif.Click += new System.EventHandler(this.btnAktif_Click);
             // 
             // btnPasif
             // 
-            this.btnPasif.Location = new System.Drawing.Point(154, 299);
+            this.btnPasif.Location = new System.Drawing.Point(669, 23);
             this.btnPasif.Name = "btnPasif";
             this.btnPasif.Size = new System.Drawing.Size(112, 37);
             this.btnPasif.TabIndex = 11;
             this.btnPasif.Text = "Pasif";
             this.btnPasif.UseVisualStyleBackColor = true;
+            this.btnPasif.Click += new System.EventHandler(this.btnPasif_Click);
             // 
             // txtAra
             // 
-            this.txtAra.Location = new System.Drawing.Point(553, 46);
+            this.txtAra.Location = new System.Drawing.Point(110, 248);
             this.txtAra.Name = "txtAra";
             this.txtAra.Size = new System.Drawing.Size(100, 22);
             this.txtAra.TabIndex = 12;
@@ -151,7 +154,7 @@ namespace Project.WinUI
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(548, 9);
+            this.label3.Location = new System.Drawing.Point(58, 245);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 25);
             this.label3.TabIndex = 13;
@@ -159,7 +162,7 @@ namespace Project.WinUI
             // 
             // btnBK
             // 
-            this.btnBK.Location = new System.Drawing.Point(553, 124);
+            this.btnBK.Location = new System.Drawing.Point(532, 233);
             this.btnBK.Name = "btnBK";
             this.btnBK.Size = new System.Drawing.Size(84, 37);
             this.btnBK.TabIndex = 14;
@@ -169,7 +172,7 @@ namespace Project.WinUI
             // 
             // kucuntenB
             // 
-            this.kucuntenB.Location = new System.Drawing.Point(662, 124);
+            this.kucuntenB.Location = new System.Drawing.Point(697, 233);
             this.kucuntenB.Name = "kucuntenB";
             this.kucuntenB.Size = new System.Drawing.Size(84, 37);
             this.kucuntenB.TabIndex = 15;
@@ -179,45 +182,37 @@ namespace Project.WinUI
             // 
             // txtSırala
             // 
-            this.txtSırala.Location = new System.Drawing.Point(553, 184);
+            this.txtSırala.Location = new System.Drawing.Point(587, 193);
             this.txtSırala.Name = "txtSırala";
-            this.txtSırala.Size = new System.Drawing.Size(100, 22);
+            this.txtSırala.Size = new System.Drawing.Size(136, 22);
             this.txtSırala.TabIndex = 16;
             // 
             // btnGuncel
             // 
-            this.btnGuncel.Location = new System.Drawing.Point(17, 364);
+            this.btnGuncel.Location = new System.Drawing.Point(600, 89);
             this.btnGuncel.Name = "btnGuncel";
             this.btnGuncel.Size = new System.Drawing.Size(112, 37);
             this.btnGuncel.TabIndex = 17;
             this.btnGuncel.Text = "Güncel";
             this.btnGuncel.UseVisualStyleBackColor = true;
+            this.btnGuncel.Click += new System.EventHandler(this.btnGuncel_Click);
             // 
-            // btnDeneme
+            // label5
             // 
-            this.btnDeneme.Location = new System.Drawing.Point(359, 379);
-            this.btnDeneme.Name = "btnDeneme";
-            this.btnDeneme.Size = new System.Drawing.Size(112, 37);
-            this.btnDeneme.TabIndex = 18;
-            this.btnDeneme.Text = "Giriş Yap";
-            this.btnDeneme.UseVisualStyleBackColor = true;
-            this.btnDeneme.Click += new System.EventHandler(this.btnDeneme_Click);
-            // 
-            // rTxtDeneme
-            // 
-            this.rTxtDeneme.Location = new System.Drawing.Point(553, 221);
-            this.rTxtDeneme.Name = "rTxtDeneme";
-            this.rTxtDeneme.Size = new System.Drawing.Size(100, 96);
-            this.rTxtDeneme.TabIndex = 19;
-            this.rTxtDeneme.Text = "";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(594, 153);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 25);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Sayı giriniz";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 457);
-            this.Controls.Add(this.rTxtDeneme);
-            this.Controls.Add(this.btnDeneme);
+            this.ClientSize = new System.Drawing.Size(804, 288);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnGuncel);
             this.Controls.Add(this.txtSırala);
             this.Controls.Add(this.kucuntenB);
@@ -260,8 +255,7 @@ namespace Project.WinUI
         private System.Windows.Forms.Button kucuntenB;
         private System.Windows.Forms.TextBox txtSırala;
         private System.Windows.Forms.Button btnGuncel;
-        private System.Windows.Forms.Button btnDeneme;
-        private System.Windows.Forms.RichTextBox rTxtDeneme;
+        private System.Windows.Forms.Label label5;
     }
 }
 

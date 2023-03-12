@@ -56,16 +56,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deneme.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Deneme.Designer.cs">
+      <DependentUpon>Deneme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBook.Designer.cs">
+      <DependentUpon>FrmBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmKategori.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKategori.Designer.cs">
+      <DependentUpon>FrmKategori.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Deneme.resx">
+      <DependentUpon>Deneme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBook.resx">
+      <DependentUpon>FrmBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmKategori.resx">
+      <DependentUpon>FrmKategori.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

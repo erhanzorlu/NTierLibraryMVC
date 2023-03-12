@@ -17,5 +17,9 @@ namespace Project.ENTITIES.Models
         public Author Author { get; set; }
         public virtual List<BookCategory> BookCategories { get; set; }
 
+        public override string ToString()
+        {
+            return $"{BookName}" ;
+        }
     }
 }

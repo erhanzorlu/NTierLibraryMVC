@@ -18,7 +18,7 @@ namespace Project.ENTITIES.Models
 
         public override string ToString()
         {
-            return $"{ID} {FirstName} {CreatedTime}";
+            return $"{FirstName} {LastName} ";
         }
     }
 }

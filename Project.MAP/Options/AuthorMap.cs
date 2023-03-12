@@ -12,6 +12,7 @@ namespace Project.MAP.Options
         public AuthorMap()
         {
             HasOptional(x => x.AuthorDetail).WithRequired(x => x.Author);
+            
         }
     }
 }

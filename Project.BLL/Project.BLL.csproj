@@ -54,6 +54,9 @@
     <Compile Include="DesignPatterns\SingletonPattern\DBTool.cs" />
     <Compile Include="Generic Repository\BaseRep\BaseRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\AuthorRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\BookCategoryRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\BookRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\CategoryRepository.cs" />
     <Compile Include="Generic Repository\IntRep\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

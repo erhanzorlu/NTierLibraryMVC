@@ -42,7 +42,7 @@ namespace Project.WinUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           // Goster();
+            Goster();
         }
 
         private void Goster()
@@ -57,20 +57,47 @@ namespace Project.WinUI
                 selectedAuthor.FirstName = txtAd.Text;
                 selectedAuthor.LastName = txtSoyad.Text;
                 authorRep.Update(selectedAuthor);
-                
+                Basarili();
+                Goster();
+
             }
+            else
+            {
+                Başarısız();
+            }
+
+        }
+
+        private static void Başarısız()
+        {
+            MessageBox.Show("Başarısız");
         }
 
         private void btnBK_Click(object sender, EventArgs e)
         {
-            int deger = Convert.ToInt32(txtSırala.Text);
-            lstAuthors.DataSource=authorRep.GetLastDatas(deger);
+            if (txtSırala.Text!="")
+            {
+                int deger = Convert.ToInt32(txtSırala.Text);
+                lstAuthors.DataSource = authorRep.GetLastDatas(deger);
+            }
+            else
+            {
+                MessageBox.Show("Sayı giriniz");
+            }
+            
         }
 
         private void kucuntenB_Click(object sender, EventArgs e)
         {
-            int deger = Convert.ToInt32(txtSırala.Text);
-            lstAuthors.DataSource = authorRep.GetFirstDatas(deger);
+            if (txtSırala.Text != "")
+            {
+                int deger = Convert.ToInt32(txtSırala.Text);
+                lstAuthors.DataSource = authorRep.GetFirstDatas(deger);
+            }
+            else
+            {
+                MessageBox.Show("Sayı giriniz");
+            }
         }
 
         private void txtAra_TextChanged(object sender, EventArgs e)
@@ -90,6 +117,50 @@ namespace Project.WinUI
             //}
 
           
+        }
+
+        private void lstAuthors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAuthors.SelectedIndex > -1)
+            {
+                selectedAuthor = lstAuthors.SelectedItem as Author;
+                txtAd.Text = selectedAuthor.FirstName;
+                txtSoyad.Text = selectedAuthor.LastName;
+            }
+            else
+            {
+                MessageBox.Show("Yazar Seçiniz");
+            }
+
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if (selectedAuthor!=null)
+            {
+                authorRep.Remove(selectedAuthor);
+                Basarili();
+                Goster();
+            }
+            else
+            {
+                Başarısız();
+            }
+        }
+
+        private void btnAktif_Click(object sender, EventArgs e)
+        {
+            lstAuthors.DataSource = authorRep.GetActives();
+        }
+
+        private void btnPasif_Click(object sender, EventArgs e)
+        {
+            lstAuthors.DataSource = authorRep.GetPassives();
+        }
+
+        private void btnGuncel_Click(object sender, EventArgs e)
+        {
+            lstAuthors.DataSource = authorRep.GetModifieds();
         }
     }
 }

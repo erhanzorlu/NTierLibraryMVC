@@ -14,6 +14,10 @@ namespace Project.ENTITIES.Models
         //Relational Properties
         public virtual List<BookCategory> BookCategories { get; set; }
 
+        public override string ToString()
+        {
+            return $"{CategoryName}";
+        }
 
     }
 }
