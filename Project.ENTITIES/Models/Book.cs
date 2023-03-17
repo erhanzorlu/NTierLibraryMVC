@@ -10,6 +10,8 @@ namespace Project.ENTITIES.Models
     {
         public string BookName { get; set; }
         public ushort Page { get; set; }
+        public string PhotoPath { get; set; }
+        public decimal? Price { get; set; }
 
         public int AuthorID { get; set; }
 
