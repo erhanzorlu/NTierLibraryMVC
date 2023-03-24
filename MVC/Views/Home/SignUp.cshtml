@@ -1,0 +1,90 @@
+﻿@model AppUserVM
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+<div class="container-fluid" style="padding-left:400px">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Adınız</label>
+                        <input class="form-control" type="text" placeholder="Erhan">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Soyadınız</label>
+                        <input class="form-control" type="text" placeholder="Zorlu">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Email</label>
+                        @Html.TextBoxFor(x => x.Email, new { placeholder = "Email  giriniz", @class = "form-control" })
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Şifre</label>
+                        @Html.TextBoxFor(x => x.Password,new { placeholder="Şifre giriniz",@class="form-control"})
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Telefon Numarası</label>
+                        <input class="form-control" type="text" placeholder="+90564851651">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Adresiniz</label>
+                        <input class="form-control" type="text" placeholder="Hürriyet mahallesi no 16">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Ülke</label>
+                        <select class="custom-select">
+                            <option selected="">Türkiye</option>
+                            <option>Yunanistan</option>
+                            <option>Azerbaycan</option>
+                            <option>Bulgaristan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Şehir</label>
+                        <input class="form-control" type="text" placeholder="İstanbul">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>İlçe</label>
+                        <input class="form-control" type="text" placeholder="Kadıköy">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Cinsiyet</label>
+                        <select class="custom-select">
+                            <option selected="">Seçiniz</option>
+                            <option>ERKEK</option>
+                            <option>KADIN</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                            <label class="custom-control-label" for="newaccount">Okudum kabul ediyorum</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="shipto">
+                            <label class="custom-control-label" for="shipto" data-toggle="collapse" data-target="#shipping-address">Bilgilerimi satabilirsin</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text-right" >
+                    <button class="btn-success" >Üye Ol</button>
+                </div>
+            </div>
+         
+        </div>
+
+    </div>
+</div>
+}

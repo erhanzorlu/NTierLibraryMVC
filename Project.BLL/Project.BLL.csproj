@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="DesignPatterns\SingletonPattern\DBTool.cs" />
     <Compile Include="Generic Repository\BaseRep\BaseRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\AppUserRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\AuthorRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\BookCategoryRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\BookRepository.cs" />

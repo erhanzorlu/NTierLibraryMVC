@@ -2,6 +2,7 @@
 using Project.BLL.Generic_Repository.ConcRep;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
+using Project.ViewModels.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
-        MyContext db;
+      
         BookRepository rep;
+        AppUserRepository AppUserRep;
         public HomeController()
         {
-            db = DBTool.DB;
+           
             rep = new BookRepository();
+            AppUserRep = new AppUserRepository();
         }
         public ActionResult Index()
         {
@@ -38,5 +41,23 @@ namespace MVC.Controllers
 
             return View();
         }
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(AppUserVM appUser)
+        {
+            AppUser user = new AppUser
+            {
+                Email = appUser.Email,
+                Password = appUser.Password,
+            };
+            AppUserRep.Add(user);
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

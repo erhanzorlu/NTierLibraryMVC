@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\AppUserMap.cs" />
     <Compile Include="Options\AuthorDetailMap.cs" />
     <Compile Include="Options\AuthorMap.cs" />
     <Compile Include="Options\BaseMap.cs" />

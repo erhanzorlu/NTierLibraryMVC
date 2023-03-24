@@ -129,6 +129,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddUpdateAppUserPageVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,10 +175,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -208,6 +209,10 @@
     <ProjectReference Include="..\Project.MAP\Project.MAP.csproj">
       <Project>{74b8c96f-6dde-4327-a3c0-3828672c848a}</Project>
       <Name>Project.MAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.ViewModels\Project.ViewModels.csproj">
+      <Project>{DF93CC9A-172A-4821-8241-7A0C57354F6B}</Project>
+      <Name>Project.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
