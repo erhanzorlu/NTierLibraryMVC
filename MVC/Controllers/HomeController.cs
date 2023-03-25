@@ -58,6 +58,17 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(AppUserVM appUser)
+        {
+            return View();
+        }
+
 
     }
 }
