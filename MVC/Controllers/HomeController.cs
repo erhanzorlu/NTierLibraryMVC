@@ -1,4 +1,5 @@
-﻿using Project.BLL.DesignPatterns.SingletonPattern;
+﻿using MVC.AuthenticationClasses;
+using Project.BLL.DesignPatterns.SingletonPattern;
 using Project.BLL.Generic_Repository.ConcRep;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
@@ -15,18 +16,19 @@ namespace MVC.Controllers
     {
       
         BookRepository rep;
-        AppUserRepository AppUserRep;
+        AppUserRepository appRep;
         public HomeController()
         {
            
             rep = new BookRepository();
-            AppUserRep = new AppUserRepository();
+            appRep = new AppUserRepository();
         }
         public ActionResult Index()
         {
            
             return View(rep.GetAll());
         }
+
 
         public ActionResult About()
         {
@@ -35,6 +37,7 @@ namespace MVC.Controllers
             return View();
         }
 
+        [AdminAuthentication]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -53,8 +56,10 @@ namespace MVC.Controllers
             {
                 Email = appUser.Email,
                 Password = appUser.Password,
+                FirstName = appUser.FirstName,
+                LastName = appUser.LastName,
             };
-            AppUserRep.Add(user);
+            appRep.Add(user);
             return RedirectToAction("Index");
         }
 
@@ -66,6 +71,14 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Login(AppUserVM appUser)
         {
+            AppUser app = appRep.FirstOrdDefault(x=>x.Email==appUser.Email && x.Password==appUser.Password);
+            if (app!=null)
+            {
+                Session["control"] = app;
+                Session["User"] = app.FirstName+" "+app.LastName;
+                return RedirectToAction("Index");
+            }
+            ViewBag.Message = "Kullanıcı bulunamadı";
             return View();
         }
 

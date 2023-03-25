@@ -1,7 +1,5 @@
 ﻿<!DOCTYPE html>
 
-<html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,10 +40,10 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Hesabım</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="/Home/SignIn"><button class="dropdown-item" type="button">Sign in</button></a>
-                            <a href="/Home/SignUp"><button class="dropdown-item" type="button">Sign Up</button></a>
+                            <a href="/Home/Login"><button class="dropdown-item" type="button">Giriş yap</button></a>
+                            <a href="/Home/SignUp"><button class="dropdown-item" type="button">Üye ol</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -96,8 +94,17 @@
                     </div>
                 </form>
             </div>
+          
             <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Müşteri Hizmetleri</p>
+                @if (Session["user"] != null)
+                {
+                <p class="m-0">@Session["user"].ToString()</p>
+                }
+                else
+                {
+                    <p class="m-0">Giriş yapın</p>
+                }
+
                 <h5 class="m-0">Lütfen aramayın</h5>
             </div>
         </div>

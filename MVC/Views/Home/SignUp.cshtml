@@ -15,11 +15,11 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label>Adınız</label>
-                        <input class="form-control" type="text" placeholder="Erhan">
+                        @Html.TextBoxFor(x => x.FirstName, new { placeholder = "İsminizi giriniz", @class = "form-control" })
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Soyadınız</label>
-                        <input class="form-control" type="text" placeholder="Zorlu">
+                        @Html.TextBoxFor(x => x.LastName, new { placeholder = "Soyisminizi  giriniz", @class = "form-control" })
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Email</label>

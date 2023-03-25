@@ -125,6 +125,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthenticationClasses\AdminAuthentication.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomTools\Cart.cs" />
     <Compile Include="CustomTools\CartItem.cs" />

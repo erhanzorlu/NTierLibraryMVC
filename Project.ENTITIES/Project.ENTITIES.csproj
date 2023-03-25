@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DataStatus.cs" />
+    <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\AuthorDetail.cs" />
