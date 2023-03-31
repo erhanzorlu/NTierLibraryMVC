@@ -13,11 +13,14 @@ namespace Project.ENTITIES.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Password { get; set; }
+        public Guid? ActivationCode { get; set; }
+        public bool? Active { get; set; } 
         public UserRole? Role { get; set; }
 
         public AppUser()
         {
             Role = UserRole.Member;
+            ActivationCode = Guid.NewGuid();
         }
 
        

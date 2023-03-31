@@ -127,12 +127,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AuthenticationClasses\AdminAuthentication.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="CustomTools\Cart.cs" />
     <Compile Include="CustomTools\CartItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddUpdateAppUserPageVM.cs" />
+    <Compile Include="Models\ListProductVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +182,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Shopping\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -201,6 +204,10 @@
     <ProjectReference Include="..\Project.BLL\Project.BLL.csproj">
       <Project>{1d63cab6-d40b-4e6f-b00b-b0aae0ba3dc9}</Project>
       <Name>Project.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj">
+      <Project>{96CE3005-04AE-4502-B41D-5AE83899E8BB}</Project>
+      <Name>Project.COMMON</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
       <Project>{c523cfcf-cbba-42c8-99e2-8b24326b197d}</Project>

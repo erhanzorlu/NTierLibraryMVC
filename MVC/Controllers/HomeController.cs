@@ -1,6 +1,7 @@
 ﻿using MVC.AuthenticationClasses;
 using Project.BLL.DesignPatterns.SingletonPattern;
 using Project.BLL.Generic_Repository.ConcRep;
+using Project.COMMON.Tools;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
 using Project.ViewModels.VMClasses;
@@ -52,15 +53,26 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult SignUp(AppUserVM appUser)
         {
-            AppUser user = new AppUser
+            if (appRep.Any(x=>x.Email==appUser.Email ))
             {
-                Email = appUser.Email,
-                Password = appUser.Password,
-                FirstName = appUser.FirstName,
-                LastName = appUser.LastName,
-            };
-            appRep.Add(user);
-            return RedirectToAction("Index");
+                ViewBag.Message = "Bu Eposta kayıtlı";
+                return View();
+            }
+
+            appUser.Password= DantexCrypt.Crypt(appUser.Password); //Şifreyi kriptoladık.
+                AppUser user = new AppUser
+                {
+                    Email = appUser.Email,
+                    Password = appUser.Password,
+                    FirstName = appUser.FirstName,
+                    LastName = appUser.LastName,
+                };
+                appRep.Add(user);
+            string gonderilecekMail = "Tebrikler hesabınız oluşturulmuştur... Hesabınızı aktive etmek için https://localhost:44314/Register/Activation/"+ user.ActivationCode+" linkine tıklayınız" ;
+            MailService.Send(appUser.Email, body: gonderilecekMail, subject: "Hesap Aktivasyonu");
+                return RedirectToAction("Index");
+            
+          
         }
 
         public ActionResult Login()

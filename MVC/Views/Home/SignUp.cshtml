@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("SignUp", "Home",FormMethod.Post,new { @class="form-signin"}))
 {
 
 <div class="container-fluid" style="padding-left:400px">

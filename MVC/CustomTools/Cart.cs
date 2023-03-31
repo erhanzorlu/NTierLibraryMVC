@@ -31,5 +31,23 @@ namespace MVC.CustomTools
             _sepetUrunlerim.Add(item.ID,item); // 3:21:35
 
         }
+        public void SepettenSil(int id)
+        {
+            if (_sepetUrunlerim[id].Amount>1)
+            {
+                _sepetUrunlerim[id].Amount--;
+                return;
+            }
+
+            _sepetUrunlerim.Remove(id);
+        }
+
+        public decimal? TotalPrice
+        {
+            get
+            {
+                return _sepetUrunlerim.Sum(x=>x.Value.SubTotal); 
+            }
+        }
     }
 }
