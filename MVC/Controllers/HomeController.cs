@@ -69,7 +69,8 @@ namespace MVC.Controllers
                 };
                 appRep.Add(user);
             string gonderilecekMail = "Tebrikler hesabınız oluşturulmuştur... Hesabınızı aktive etmek için https://localhost:44314/Register/Activation/"+ user.ActivationCode+" linkine tıklayınız" ;
-            MailService.Send(appUser.Email, body: gonderilecekMail, subject: "Hesap Aktivasyonu");
+            //MailService.Send(appUser.Email, body: gonderilecekMail, subject: "Hesap Aktivasyonu");
+
                 return RedirectToAction("Index");
             
           

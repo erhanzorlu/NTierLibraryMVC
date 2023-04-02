@@ -1,4 +1,5 @@
 ﻿using MVC.CustomTools;
+using MVC.Models;
 using Project.BLL.DesignPatterns.SingletonPattern;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
@@ -26,13 +27,27 @@ namespace MVC.Controllers
             ci.BookName = eklenecekUrun.BookName;
             ci.ID = eklenecekUrun.ID;
             ci.UnitPrice = eklenecekUrun.Price;
+            ci.ImagePath = eklenecekUrun.PhotoPath;
             c.SepeteEkle(ci);
             Session["scart"] = c;
             TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
-            //return new RedirectToRouteResult(new RouteValueDictionary(new { Action="Index",Controller="Home"}));
-            return View();
+            return RedirectToAction("Index","Home"); 
 
-            
+        }
+        public ActionResult CartPage()
+        {
+            if (Session["scart"]!=null)
+            {
+                Cart c = Session["scart"] as Cart;
+                CartPageVM cartPageVM = new CartPageVM
+                {
+                    Cart =c,
+                };
+                return View(cartPageVM);
+            }
+
+            ViewBag.SepetBos = "Sepetinizde ürün bulunmamaktadır";
+            return View();
         }
     }
 }

@@ -1,0 +1,51 @@
+﻿@model MVC.Models.CartPageVM
+@{
+    ViewBag.Title = "CartPage";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>CartPage</h2>
+
+@Html.ActionLink("Alışverise devam et", "Index", "Home")
+
+@if (ViewBag.SepetBos != null)
+{
+    <h1 style="color:red">@ViewBag.SepetBos</h1>
+}
+else
+{
+
+
+    <div class="card card-body">
+        Odemeniz gereken mevcut toplam tutar => @Model.Cart.TotalPrice ...Siparişi onaylamak icin lütfen ...
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Urun Ismi</th>
+                <th>Urun Fiyatı</th>
+                <th>Urun Adedi</th>
+                <th>Ara Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Cart.Sepetim)
+            {
+                <tr>
+                    <td>@item.BookName</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Amount</td>
+                    <td>@item.SubTotal</td>
+                    <td>@Html.ActionLink("-", "DeleteFromCart", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                    <td>@Html.ActionLink("+", "IncreaseAmount", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                    <td>@Html.ActionLink("+", "DestroyFromCart", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+}

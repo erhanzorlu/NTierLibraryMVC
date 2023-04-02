@@ -10,7 +10,7 @@ namespace Project.COMMON.Tools
 {
     public class MailService
     {
-        public static void Send(string receiver,string password= "şifre_yazılacak_yer", string body="Test Mesajı",string subject="Email Testi",string sender= "eposta_gelecek_yer")
+        public static void Send(string receiver,string password= "Finalodevi2022", string body="Test Mesajı",string subject="Email Testi",string sender= "Efinalodevi2022@gmail.com")
         {
             MailAddress senderEmail = new MailAddress(sender);
             MailAddress receiverEmail = new MailAddress(receiver);
@@ -18,7 +18,7 @@ namespace Project.COMMON.Tools
             {
                 Host = "smtp.gmail.com",
                 Port=587,
-                EnableSsl=true,
+                EnableSsl=false,
                 DeliveryMethod=SmtpDeliveryMethod.Network,
                 UseDefaultCredentials=false,
                 Credentials=new NetworkCredential(senderEmail.Address,password)

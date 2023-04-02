@@ -12,7 +12,7 @@ namespace MVC.CustomTools
         {
             _sepetUrunlerim = new Dictionary<int, CartItem>();
         }
-        public List<CartItem> Sepetim
+        public  List<CartItem> Sepetim
         {
             get
             {

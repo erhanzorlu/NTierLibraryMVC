@@ -9,6 +9,7 @@ namespace MVC.CustomTools
     {
         public int ID { get; set; }
         public string BookName { get; set; }
+        public string ImagePath { get; set; }
         public decimal? UnitPrice { get; set; }
         public short Amount { get; set; }
         public decimal? SubTotal { get { return UnitPrice * Amount; } }//Ara Toplam
