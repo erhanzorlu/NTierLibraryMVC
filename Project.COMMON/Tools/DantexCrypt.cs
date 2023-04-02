@@ -43,12 +43,8 @@ namespace Project.COMMON.Tools
         {
             string decryptedCode = "";
             
-
-
-            
+       
             List<string> parts = Regex.Split(a, @"(?<=[*_?])").ToList(); //split gibi iş yapar anca *_? karakterlerini de alır..
-
-
 
             foreach (string item in parts)
             {

@@ -8,6 +8,7 @@ namespace Project.ENTITIES.Models
 {
     public class Author:BaseEntity
     {
+        //Bir yazarın birden çok kitabi olur ( 1-n )
         public string FirstName { get; set; }
         public string LastName { get; set; }
 

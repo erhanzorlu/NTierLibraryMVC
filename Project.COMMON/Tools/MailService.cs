@@ -34,12 +34,17 @@ namespace Project.COMMON.Tools
             {
                 smtp.Send(message);
             }
+
+            
             /*
-              
+              kod1
+            kod2
              
              */
 
 
         }
+
+
     }
 }

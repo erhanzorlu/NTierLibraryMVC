@@ -49,5 +49,17 @@ namespace MVC.Controllers
             ViewBag.SepetBos = "Sepetinizde ürün bulunmamaktadır";
             return View();
         }
+        public ActionResult DeleteFromCart(int id)
+        {
+            if (Session["scart"]!=null)
+            {
+                Cart c = Session["scart"] as Cart;
+                c.SepettenSil(id);
+                if (c.Sepetim.Count == 0) Session.Remove("scart");
+                return RedirectToAction("CartPage");
+                
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
