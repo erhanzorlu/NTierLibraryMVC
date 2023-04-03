@@ -28,7 +28,7 @@ namespace MVC.CustomTools
                 _sepetUrunlerim[item.ID].Amount++;
                 return;
             }
-            _sepetUrunlerim.Add(item.ID,item); // 3:21:35
+            _sepetUrunlerim.Add(item.ID,item); // 
 
         }
         public void SepettenSil(int id)

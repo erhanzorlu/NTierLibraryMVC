@@ -51,7 +51,7 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(AppUserVM appUser)
+        public ActionResult SignUp(Project.ViewModels.VMClasses.AppUserVM appUser)
         {
             if (appRep.Any(x=>x.Email==appUser.Email ))
             {
@@ -82,7 +82,7 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(AppUserVM appUser)
+        public ActionResult Login(Project.ViewModels.VMClasses.AppUserVM appUser)
         {
             AppUser app = appRep.FirstOrdDefault(x=>x.Email==appUser.Email && x.Password==appUser.Password);
             if (app!=null)

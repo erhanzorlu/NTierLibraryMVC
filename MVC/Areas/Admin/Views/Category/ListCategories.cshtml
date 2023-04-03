@@ -1,0 +1,57 @@
+﻿@model AdminCategoryListPageVM
+@{
+    ViewBag.Title = "ListCategories";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<header class="panel-heading">
+    @Html.ActionLink("Kategori ekle", "AddCategory", null, new { @class = "btn btn-primary" })
+</header>
+
+<div class="panel-body">
+    <div class="adv-table">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+                <tr>
+                    <th>Kategori ID</th>
+                    <th>Kategori Ismi</th>
+                    <th class="hidden-phone">Kategori Acıklaması</th>
+                    <th class="hidden-phone">Durum</th>
+                    <th class="hidden-phone">Yaratma Tarihi</th>
+                    <th class="hidden-phone">Silme Tarihi</th>
+                    <th class="hidden-phone">Güncelleme Tarihi</th>
+                    <th class="hidden-phone">Sil</th>
+                    <th class="hidden-phone">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Categories)
+                {
+                    <tr class="gradeX">
+
+                        <td>@item.ID</td>
+                        <td>@item.CategoryName</td>
+                        <td class="hidden-phone">@item.Description</td>
+                        <td class="center hidden-phone">@item.Status</td>
+                        <td class="center hidden-phone">@item.CreatedDate</td>
+                        <td class="center hidden-phone">@item.DeletedDate</td>
+                        <td class="center hidden-phone">@item.ModifiedDate</td>
+                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteCategory", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateCategory", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+
+                    </tr>
+                }
+
+
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="~/Areas/Admin/AdminScripts/AdminCategoryDTJ.js"></script>
+
