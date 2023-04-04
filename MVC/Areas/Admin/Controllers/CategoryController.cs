@@ -102,5 +102,13 @@ namespace MVC.Areas.Admin.Controllers
             
             return RedirectToAction("ListCategories");
         }
+        public ActionResult DeleteCategory(int id)
+        {
+         //Category cat=_cRep.Find(id);
+         //_cRep.Remove(cat);  // uzun yöntem
+
+            _cRep.Remove(_cRep.Find(id));
+            return RedirectToAction("ListCategories");
+        }
     }
 }
