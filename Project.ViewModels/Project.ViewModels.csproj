@@ -42,11 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VMClasses\AdminAuthorVM.cs" />
+    <Compile Include="VMClasses\AdminBookCategoryVM.cs" />
+    <Compile Include="VMClasses\AdminBookVM.cs" />
     <Compile Include="VMClasses\AdminCategoryVM.cs" />
     <Compile Include="VMClasses\AppUserVM.cs" />
     <Compile Include="VMClasses\AuthorProfileVM.cs" />
     <Compile Include="VMClasses\AuthorVM.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
+      <Project>{195631A4-2C7A-4C79-9BC0-1C01A93AC9A0}</Project>
+      <Name>Project.ENTITIES</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

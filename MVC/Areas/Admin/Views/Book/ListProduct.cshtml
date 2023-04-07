@@ -1,0 +1,67 @@
+﻿@model AdminBookListPageVM
+@{
+    ViewBag.Title = "ListProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<header class="panel-heading">
+    @Html.ActionLink("Kitap ekle", "AddBook", null, new { @class = "btn btn-primary" })
+</header>
+
+<div class="panel-body">
+    <div class="adv-table">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+                <tr>
+                    <th>Kitap ID</th>
+                    <th>Kitap Ismi</th>
+                    <th class="hidden-phone">Yazar</th>
+                    <th class="hidden-phone">Kategori</th>
+                    <th class="hidden-phone">Durum</th>
+                    <th class="hidden-phone">Yaratma Tarihi</th>
+                    <th class="hidden-phone">Silme Tarihi</th>
+                    <th class="hidden-phone">Güncelleme Tarihi</th>
+                    <th class="hidden-phone">Sil</th>
+                    <th class="hidden-phone">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (AdminBookVM item in Model.Books)
+                {
+                    <tr class="gradeX">
+
+                        <td>@item.ID</td>
+                        <td>@item.BookName</td>
+                        <td class="hidden-phone">@item.AuthorName @item.AuthorLastName.</td>
+                        <td class="center hidden-phone">@item.CategoryName</td>
+                        <td class="center hidden-phone">@item.Status</td>
+                        <td class="center hidden-phone">@item.CreatedDate</td>
+
+                        @if (item.DeletedDate !=null )
+                        {
+                            <td class="center hidden-phone">@item.DeletedDate</td>
+                        }
+                        else
+                        {
+                        <td class="center hidden-phone">Silinme tarihi bulunmuyor</td>
+                        }
+                        <td class="center hidden-phone">@item.ModifiedDate</td>
+                        <td class="center hidden-phone"> @Html.ActionLink("Sil", "DeleteBook", new { id = item.ID }, new { @class = "btn btn-danger" })  </td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateBook", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+
+                    </tr>
+                }
+
+
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="~/Areas/Admin/AdminScripts/AdminCategoryDTJ.js"></script>
+
