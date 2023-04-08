@@ -1,0 +1,95 @@
+﻿@model AdminCreateUpdateBookVM
+
+    @{
+        ViewBag.Title = "UpdateBook";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>UpdateBook</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(x=>x.AdminBookVMs.ID)
+        <div class="row">
+            <div class="col-sm-12">
+
+                <section class="panel">
+                    <header class="panel-heading">
+                        Kategori Ekleme Sayfası
+                    </header>
+
+                    <div class="panel-body">
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Kitap Ismi</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.AdminBookVMs.BookName, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+
+
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Resim yolu</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.AdminBookVMs.PhotoPath, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Sayfa sayısı</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.AdminBookVMs.Page, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Fiyatı</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(x => x.AdminBookVMs.Price, new { @class = "form-control-genislik" })
+                            </div>
+                        </div>
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Kategorisi</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(x => x.AdminBookVMs.CategoryID, new SelectList(Model.AdminCategoryVMs, "ID", "CategoryName"))
+                            </div>
+                        </div>
+                        <br /> <br />
+
+                        <div class="form-group">
+                            <label class="col-sm-2">Kategorisi</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownListFor(x => x.AdminBookVMs.AuthorID, new SelectList(Model.AdminAuthors, "ID", "FullName"))
+                            </div>
+                        </div>
+                        <br /> <br />
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2">İşlem:</label>
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary">Ekle</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+        </div>
+
+
+
+    }
+

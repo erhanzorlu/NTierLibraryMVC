@@ -1985,6 +1985,7 @@
     <Content Include="Areas\Admin\Views\Author\ListAuthor.cshtml" />
     <Content Include="Areas\Admin\Views\Book\ListProduct.cshtml" />
     <Content Include="Areas\Admin\Views\Book\AddBook.cshtml" />
+    <Content Include="Areas\Admin\Views\Book\UpdateBook.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

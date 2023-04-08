@@ -55,18 +55,18 @@ namespace MVC.Areas.Admin.Controllers
                 PhotoPath = x.Book.PhotoPath,
                 Price = x.Book.Price,
                 Status = x.Book.Status.ToString(),
-                AuthorName=x.Book.Author.FirstName,
-                AuthorLastName=x.Book.Author.LastName,
-                CategoryName=x.Category.CategoryName
+                AuthorName = x.Book.Author.FirstName,
+                AuthorLastName = x.Book.Author.LastName,
+                CategoryName = x.Category.CategoryName
 
 
             }).ToList();
 
-   
+
 
             AdminBookListPageVM adminBookListPageVM = new AdminBookListPageVM()
             {
-               Books= bookVMs,
+                Books = bookVMs,
             };
 
 
@@ -78,22 +78,23 @@ namespace MVC.Areas.Admin.Controllers
         {
             List<AdminAuthorVM> authorVMs = _authorRep.Select(x => new AdminAuthorVM
             {
-                ID=x.ID,
-               FirstName=x.FirstName, LastName=x.LastName,
+                ID = x.ID,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
             }).ToList();
 
             List<AdminCategoryVM> categoryVMs = _catRep.Select(x => new AdminCategoryVM
             {
-                ID=x.ID,
+                ID = x.ID,
                 CategoryName = x.CategoryName,
 
             }).ToList();
-     
+
 
             AdminCreateUpdateBookVM acubvm = new AdminCreateUpdateBookVM()
             {
                 AdminAuthors = authorVMs,
-                AdminCategoryVMs= categoryVMs,
+                AdminCategoryVMs = categoryVMs,
             };
 
             return View(acubvm);
@@ -102,26 +103,87 @@ namespace MVC.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddBook(AdminBookVM AdminBookVMs)
         {
-            Book book=new Book()
+            Book book = new Book()
             {
-                BookName= AdminBookVMs.BookName,
-                Page= AdminBookVMs.Page,
-                PhotoPath= AdminBookVMs.PhotoPath,
-                Price= AdminBookVMs.Price,
-                AuthorID= AdminBookVMs.AuthorID
-                
+                BookName = AdminBookVMs.BookName,
+                Page = AdminBookVMs.Page,
+                PhotoPath = AdminBookVMs.PhotoPath,
+                Price = AdminBookVMs.Price,
+                AuthorID = AdminBookVMs.AuthorID
+
             };
             _bokRep.Add(book);
             BookCategory bookCategory = new BookCategory()
             {
-                BookID=book.ID,
-                CategoryID= AdminBookVMs.CategoryID
-                
-                
+                BookID = book.ID,
+                CategoryID = AdminBookVMs.CategoryID
+
+
             };
-          
+
             _bookCategoryRep.Add(bookCategory);
 
+            return RedirectToAction("ListProduct");
+        }
+        public ActionResult UpdateBook(int id)
+        {
+            AdminBookVM adminBookV=_bokRep.Select(x=> new AdminBookVM { 
+            
+                ID = x.ID,
+                BookName=x.BookName,
+                Page = x.Page,  
+                PhotoPath = x.PhotoPath,
+                Price = x.Price,
+
+            }).FirstOrDefault(x=>x.ID==id);
+
+            List<AdminAuthorVM> authorVMs = _authorRep.Select(x => new AdminAuthorVM
+            {
+                ID = x.ID,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+            }).ToList();
+
+            List<AdminCategoryVM> categoryVMs = _catRep.Select(x => new AdminCategoryVM
+            {
+                ID = x.ID,
+                CategoryName = x.CategoryName,
+
+            }).ToList();
+
+
+            AdminCreateUpdateBookVM acubvm = new AdminCreateUpdateBookVM()
+            {
+                AdminAuthors = authorVMs,
+                AdminCategoryVMs = categoryVMs,
+                AdminBookVMs= adminBookV
+            };
+
+
+            return View(acubvm);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateBook(AdminBookVM AdminBookVMs,int? id)
+        {
+            Book secilen = _bokRep.Find(AdminBookVMs.ID);
+            secilen.BookName = AdminBookVMs.BookName;
+            secilen.Page = AdminBookVMs.Page;
+            secilen.Price = AdminBookVMs.Price;
+            secilen.PhotoPath = AdminBookVMs.PhotoPath;
+            secilen.AuthorID = AdminBookVMs.AuthorID;
+            _bokRep.Update(secilen);
+
+            //var bookCategory = _bookCategoryRep.FirstOrdDefault(x => x.BookID == id);
+            //bookCategory.BookID = AdminBookVMs.ID;
+            //bookCategory.CategoryID = AdminBookVMs.CategoryID;
+            //_bookCategoryRep.Update(bookCategory);  // Çalışmıyor 
+            return RedirectToAction("ListProduct");
+
+        }
+        public ActionResult DeleteBook(int id)
+        {
+            _bokRep.Remove(_bokRep.Find(id));
             return RedirectToAction("ListProduct");
         }
     }
