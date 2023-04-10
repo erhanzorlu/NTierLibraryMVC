@@ -18,16 +18,21 @@ namespace MVC.Controllers
       
         BookRepository rep;
         AppUserRepository appRep;
+        CategoryRepository _catRep;
         public HomeController()
         {
            
             rep = new BookRepository();
             appRep = new AppUserRepository();
+            _catRep = new CategoryRepository();
+         
+
         }
         public ActionResult Index()
         {
-           
+            Session["kategoriler"] = _catRep.GetActives();
             return View(rep.GetAll());
+       
         }
 
 

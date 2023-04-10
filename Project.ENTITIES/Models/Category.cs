@@ -13,6 +13,7 @@ namespace Project.ENTITIES.Models
 
         //Relational Properties
         public virtual List<BookCategory> BookCategories { get; set; }
+        public virtual List<Book> Books { get; set; }
 
         public override string ToString()
         {

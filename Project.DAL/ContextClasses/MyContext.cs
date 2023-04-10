@@ -22,14 +22,12 @@ namespace Project.DAL.ContextClasses
             modelBuilder.Configurations.Add(new AuthorDetailMap());
             modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new BookMap());
-            modelBuilder.Configurations.Add(new BookCategoryMap());
             modelBuilder.Configurations.Add(new AppUserMap());
         }
 
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<BookCategory> BookCategories { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorDetail> AuthorDetails{ get; set; }
         public DbSet<AppUser> AppUsers{ get; set; }

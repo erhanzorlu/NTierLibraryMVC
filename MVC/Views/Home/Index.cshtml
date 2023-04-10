@@ -9,7 +9,10 @@
 
 
 <body>
+  
+  
     
+
     <div class="container-fluid mb-3">
         <div class="row px-xl-5">
             <div class="col-lg-8">
@@ -53,7 +56,7 @@
                     </div>
                 </div>
             </div>
-     
+
 
 
             <div class="col-lg-4">
@@ -69,7 +72,7 @@
                                 <h3 class="text-white mb-3">Özel içerik</h3>
                                 <h4 class="text-white mb-3">@item.BookName</h4>
                                 <a href="" class="btn btn-primary">Shop Now</a>
-                            </div>                          
+                            </div>
                         </div>
                         sayac++;
                     }
@@ -79,6 +82,7 @@
 
         </div>
     </div>
+
     <!-- Carousel End -->
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
@@ -114,24 +118,30 @@
     <div class="container-fluid pt-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Kategoriler</span></h2>
         <div class="row px-xl-5 pb-3">
-            @foreach (var item in Model)
+
+            @if (Session["kategoriler"] !=null) //Bu kısma bakılacak
             {
+                foreach (Category item in Session["kategoriler"] as List<Category>)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                        <a class="text-decoration-none" href="">
+                            <div class="cat-item d-flex align-items-center mb-4">
+                                <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                                    <img class="img-fluid" src="img/cat-1.jpg" alt="">
+                                </div>
+                                <div class="flex-fill pl-3">
+                                    <h6>@item.CategoryName</h6>
+                                    @{
 
-
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" href="">
-                    <div class="cat-item d-flex align-items-center mb-4">
-                        <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="img/cat-1.jpg" alt="">
-                        </div>
-                        <div class="flex-fill pl-3">
-                            <h6>@item.BookName</h6>
-                            <small class="text-body">@item.Page</small>
-                        </div>
+                                    }
+                                    <small class="text-body">Buraya kategoriden kaç kitap var gelecek</small>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
+                }
             }
+
 
 
         </div>
@@ -151,7 +161,7 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src=@item.PhotoPath alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="/Shopping/AddToCart/@item.ID"><i class="fa fa-shopping-cart"></i></a>                               
+                                <a class="btn btn-outline-dark btn-square" href="/Shopping/AddToCart/@item.ID"><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
@@ -160,27 +170,30 @@
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">@item.BookName</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>@item.Price</h5><h6 class="text-muted ml-2"><del>
-                               
-                                     @{ 
-                                         double sayi =0,toplam=0;
-                                         sayi = Convert.ToDouble(item.Price);
-                                         if (sayi>0 && sayi<=50)
-                                         {
-                                             toplam = sayi * 1.2;
-                                         }
-                                         else if (sayi>=51 && sayi<130)
-                                         {
-                                             toplam = sayi * 1.4;
-                                         }
-                                         else
-                                         {
-                                             toplam = sayi * 1.6;
-                                         }
+                                <h5>@item.Price</h5><h6 class="text-muted ml-2">
+                                    <del>
 
-                                     }
-                                      
-                                    @toplam  </del></h6>
+                                        @{
+                                            double sayi = 0, toplam = 0;
+                                            sayi = Convert.ToDouble(item.Price);
+                                            if (sayi > 0 && sayi <= 50)
+                                            {
+                                                toplam = sayi * 1.2;
+                                            }
+                                            else if (sayi >= 51 && sayi < 130)
+                                            {
+                                                toplam = sayi * 1.4;
+                                            }
+                                            else
+                                            {
+                                                toplam = sayi * 1.6;
+                                            }
+
+                                        }
+
+                                        @toplam
+                                    </del>
+                                </h6>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 @{
@@ -488,7 +501,6 @@
         </div>
     </div>
     <!-- Vendor End -->
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 

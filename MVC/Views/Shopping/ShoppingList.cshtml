@@ -1,0 +1,256 @@
+﻿@model PaginationVM
+@{
+    ViewBag.Title = "ShoppingList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-md-3">
+                <section class="panel">
+                    <div class="panel-body">
+                        <input type="text" placeholder="Keyword Search" class="form-control">
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Category
+                    </header>
+                    <div class="panel-body">
+                        <ul class="nav prod-cat">
+                            <li>
+                                <a href="#" class="active"><i class=" icon-angle-right"></i> DenemeüstBaşlık</a>
+                                <ul class="nav">
+                                    <li class="active"><a href="#">- altbaşlık1</a></li>
+                                    <li><a href="#">- altbaşlık2</a></li>
+                                    <li><a href="#">- altbaşlık3</a></li>
+                                </ul>
+                            </li>
+                            @foreach (var item in Model.Categories)
+                            {
+                                <li style="padding:10px">@Html.ActionLink(item.CategoryName, "ShoppingList", new { categoryID = item.ID }, new { @class = "btn btn-primary" })</li>
+                            }
+
+
+                        </ul>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Price Range
+                    </header>
+                    <div class="panel-body sliders">
+                        <div id="slider-range" class="slider"></div>
+                        <div class="slider-info">
+                            <span id="slider-range-amount"></span>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+                    <header class="panel-heading">
+                        Best Seller
+                    </header>
+                 
+
+                </section>
+            </div>
+            <div class="col-md-9">
+                <section class="panel">
+                    <div class="panel-body">
+
+
+                        <div class="pull-right">
+                            <ul class="pagination pagination-sm pro-page-list">
+
+                                @if (TempData["catID"] != null)
+                                {
+                                    <li> @Html.PagedListPager(Model.PagedBooks, page => Url.Action("ShoppingList", new { page, categoryID = TempData["catID"] }))     </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row product-list">
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro-1.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro1.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro2.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro3.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro-1.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro2.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro1.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro3.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <section class="panel">
+                            <div class="pro-img-box">
+                                <img src="img/product-list/pro-1.jpg" alt="" />
+                                <a href="#" class="adtocart">
+                                    <i class="icon-shopping-cart"></i>
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a href="#" class="pro-title">
+                                        Leopard Shirt Dress
+                                    </a>
+                                </h4>
+                                <p class="price">$300.00</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>

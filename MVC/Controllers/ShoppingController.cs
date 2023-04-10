@@ -1,8 +1,13 @@
 ﻿using MVC.CustomTools;
 using MVC.Models;
+using MVC.Models.ShoppingTools;
+using PagedList;
 using Project.BLL.DesignPatterns.SingletonPattern;
+using Project.BLL.Generic_Repository.ConcRep;
 using Project.DAL.ContextClasses;
 using Project.ENTITIES.Models;
+using Project.ViewModels.VMClasses;
+using Project.ViewModels.VMClasses.AdminVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +19,44 @@ namespace MVC.Controllers
 {
     public class ShoppingController : Controller
     {
-        MyContext db;
+        BookRepository _bokRep;
+        CategoryRepository _catRep;
+
         public ShoppingController()
         {
-            db = DBTool.DB;
+           _bokRep = new BookRepository();
+            _catRep = new CategoryRepository();
+            Session["kategori"] = _catRep.Select(x => x.CategoryName).ToList();
+
+
+        }
+        public ActionResult ShoppingList(int? page,int? categoryID)
+        {
+            
+            PaginationVM paginationVM = new PaginationVM()
+            {
+             PagedBooks=categoryID==null? _bokRep.GetActives().ToPagedList(page??1,9):_bokRep.Where(x=>x.CategoryID==categoryID).ToPagedList(page??1,9),
+             Categories=_catRep.GetActives()
+           
+
+            };
+            if (categoryID != null) TempData["catID"] = categoryID;
+
+            return View(paginationVM);
         }
         public ActionResult AddToCart(int id)
         {
-            Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
-            Book eklenecekUrun = db.Books.Find(id);
-            CartItem ci = new CartItem();
-            ci.BookName = eklenecekUrun.BookName;
-            ci.ID = eklenecekUrun.ID;
-            ci.UnitPrice = eklenecekUrun.Price;
-            ci.ImagePath = eklenecekUrun.PhotoPath;
-            c.SepeteEkle(ci);
-            Session["scart"] = c;
-            TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
-            return RedirectToAction("Index","Home"); 
+            //Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
+            //Book eklenecekUrun = db.Books.Find(id);
+            //CartItem ci = new CartItem();
+            //ci.BookName = eklenecekUrun.BookName;
+            //ci.ID = eklenecekUrun.ID;
+            //ci.UnitPrice = eklenecekUrun.Price;
+            //ci.ImagePath = eklenecekUrun.PhotoPath;
+            //c.SepeteEkle(ci);
+            //Session["scart"] = c;
+            //TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
+            return RedirectToAction("Index", "Home");
 
         }
         public ActionResult CartPage()
