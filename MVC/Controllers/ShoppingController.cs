@@ -10,6 +10,7 @@ using Project.ViewModels.VMClasses;
 using Project.ViewModels.VMClasses.AdminVM;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,7 +27,6 @@ namespace MVC.Controllers
         {
            _bokRep = new BookRepository();
             _catRep = new CategoryRepository();
-            Session["kategori"] = _catRep.Select(x => x.CategoryName).ToList();
 
 
         }
@@ -46,16 +46,7 @@ namespace MVC.Controllers
         }
         public ActionResult AddToCart(int id)
         {
-            //Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
-            //Book eklenecekUrun = db.Books.Find(id);
-            //CartItem ci = new CartItem();
-            //ci.BookName = eklenecekUrun.BookName;
-            //ci.ID = eklenecekUrun.ID;
-            //ci.UnitPrice = eklenecekUrun.Price;
-            //ci.ImagePath = eklenecekUrun.PhotoPath;
-            //c.SepeteEkle(ci);
-            //Session["scart"] = c;
-            //TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
+            SepeteYolla(id);
             return RedirectToAction("Index", "Home");
 
         }
@@ -85,6 +76,25 @@ namespace MVC.Controllers
                 
             }
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult IncreaseAmount(int id)
+        {
+            SepeteYolla(id);
+            return RedirectToAction("CartPage");
+        }
+
+        private void SepeteYolla(int id)
+        {
+            Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
+            Book eklenecekUrun = _bokRep.Find(id);
+            CartItem ci = new CartItem();
+            ci.BookName = eklenecekUrun.BookName;
+            ci.ID = eklenecekUrun.ID;
+            ci.UnitPrice = eklenecekUrun.Price;
+            ci.ImagePath = eklenecekUrun.PhotoPath;
+            c.SepeteEkle(ci);
+            Session["scart"] = c;
+            TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
         }
     }
 }

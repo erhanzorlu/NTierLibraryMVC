@@ -68,10 +68,14 @@
                         <i class="fas fa-heart text-dark"></i>
                         <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                     </a>
-                    <a href="/Shopping/CartPage" class="btn px-0 ml-2">
-                        <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
+                    @section Sepet{
+                                        <a href="@Url.Action("CartPage","Shopping")" class="btn px-0 ml-2">
+                                           
+                                            <i class="fas fa-shopping-cart text-dark"></i>
+                                            <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                                        </a>
+                        }
+                    
                 </div>
             </div>
         </div>

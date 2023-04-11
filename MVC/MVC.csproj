@@ -1830,6 +1830,7 @@
     <Content Include="OuterTools\todo_list.html" />
     <Content Include="OuterTools\widget.html" />
     <Content Include="OuterTools\xchart.html" />
+    <Content Include="Pictures\Screenshot_5.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
