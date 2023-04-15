@@ -41,6 +41,10 @@ namespace MVC.CustomTools
 
             _sepetUrunlerim.Remove(id);
         }
+        public void SepettenKaldir(int id)
+        {
+            _sepetUrunlerim.Remove(id);
+        }
 
         public decimal? TotalPrice
         {

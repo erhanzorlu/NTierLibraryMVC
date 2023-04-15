@@ -58,6 +58,8 @@
     <Compile Include="Options\BookCategoryMap.cs" />
     <Compile Include="Options\BookMap.cs" />
     <Compile Include="Options\CategoryMap.cs" />
+    <Compile Include="Options\OrderDetailMap.cs" />
+    <Compile Include="Options\OrderMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

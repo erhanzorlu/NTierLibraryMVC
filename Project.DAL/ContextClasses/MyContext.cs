@@ -23,6 +23,8 @@ namespace Project.DAL.ContextClasses
             modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new BookMap());
             modelBuilder.Configurations.Add(new AppUserMap());
+            modelBuilder.Configurations.Add(new OrderMap());
+            modelBuilder.Configurations.Add(new OrderDetailMap());
         }
 
 
@@ -31,5 +33,7 @@ namespace Project.DAL.ContextClasses
         public DbSet<Author> Authors { get; set; }
         public DbSet<AuthorDetail> AuthorDetails{ get; set; }
         public DbSet<AppUser> AppUsers{ get; set; }
+        public DbSet<Order> Orders{ get; set; }
+        public DbSet<OrderDetail> OrderDetails{ get; set; }
     }
 }

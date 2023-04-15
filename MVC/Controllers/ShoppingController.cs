@@ -96,5 +96,21 @@ namespace MVC.Controllers
             Session["scart"] = c;
             TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
         }
+        public ActionResult DestroyFromCart(int id)
+        {
+            Cart c = Session["scart"] as Cart;
+            c.SepettenKaldir(id);
+            return RedirectToAction("CartPage");
+        }
+        public ActionResult ConfirmOrder()
+        {
+            AppUser currentUser;
+            if (Session["member"] != null)
+            {
+                currentUser = Session["member"] as AppUser;
+            }
+            else TempData["anonim"] = "Kullanıcı üye değil";
+            return View();
+        }
     }
 }

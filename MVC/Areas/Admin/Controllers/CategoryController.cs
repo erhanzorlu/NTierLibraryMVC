@@ -16,6 +16,7 @@ namespace MVC.Areas.Admin.Controllers
         // GET: Admin/Category
 
         CategoryRepository _cRep;
+        BookCategoryRepository _bcRep=new BookCategoryRepository();
 
         public CategoryController()
         {
@@ -109,6 +110,11 @@ namespace MVC.Areas.Admin.Controllers
 
             _cRep.Remove(_cRep.Find(id));
             return RedirectToAction("ListCategories");
+        }
+        public ActionResult Deneme()
+        {
+
+            return View(_bcRep.GetActives());
         }
     }
 }

@@ -150,6 +150,7 @@
     <Compile Include="Models\AddUpdateAppUserPageVM.cs" />
     <Compile Include="Models\CartPageVM.cs" />
     <Compile Include="Models\ListProductVM.cs" />
+    <Compile Include="Models\PageVMs\OrderVM.cs" />
     <Compile Include="Models\ShoppingTools\PaginationVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2026,10 +2027,12 @@
     <Content Include="Views\Shopping\AddToCart.cshtml" />
     <Content Include="Views\Shopping\CartPage.cshtml" />
     <Content Include="Views\Shopping\ShoppingList.cshtml" />
+    <Content Include="Views\Author\View.cshtml" />
+    <Content Include="Views\Author\AddAuthor.cshtml" />
+    <Content Include="Views\Shopping\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Author\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
