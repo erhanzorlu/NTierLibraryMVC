@@ -1,4 +1,4 @@
-﻿
+﻿@model MVC.Models.PageVMs.OrderVM
 @{
     ViewBag.Title = "ConfirmOrder";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
@@ -8,18 +8,74 @@
 
 
     @using (Html.BeginForm())
-            {
+    {
 
         <div class="form-group">
             <label class="col-sm-2 control-label">Gönderim Adresi</label>
             <div class="col-sm-10">
-                @Html.TextAreaFor()
+                @Html.TextAreaFor(x => x.Order.ShippingAddress, new { @class = "form-control" })
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Kart Numarası</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.PaymentRM.CardNumber, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Kart Güvenlik Numarası</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.PaymentRM.SecurityNumber, new { @class = "form-control" })
             </div>
 
         </div>
 
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Gecerlilik Süresi(Yıl)</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.PaymentRM.CardExpiryYear, new { @class = "form-control" })
+            </div>
+        </div>
 
-            }
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Gecerlilik Süresi(Ay)</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.PaymentRM.CardExpiryMonth, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Kart üzerindeki isim</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.PaymentRM.CardExpiryMonth, new { @class = "form-control" })
+            </div>
+        </div>
+
+        if (Session["member"] == null)
+        {
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(x => x.Order.NonMemberEmail, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Onaylamak için tıklayınız</label>
+            <div class="col-sm-10">
+<button class="btn btn-primary">Onayla</button>
+            </div>
+        </div>
+
+    }
+
+
 
 
 </div>

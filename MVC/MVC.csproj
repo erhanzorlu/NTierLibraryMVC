@@ -152,6 +152,7 @@
     <Compile Include="Models\ListProductVM.cs" />
     <Compile Include="Models\PageVMs\OrderVM.cs" />
     <Compile Include="Models\ShoppingTools\PaginationVM.cs" />
+    <Compile Include="OrderRequestModels\PaymentRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
