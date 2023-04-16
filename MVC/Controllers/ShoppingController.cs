@@ -1,5 +1,6 @@
 ﻿using MVC.CustomTools;
 using MVC.Models;
+using MVC.Models.PageVMs;
 using MVC.Models.ShoppingTools;
 using PagedList;
 using Project.BLL.DesignPatterns.SingletonPattern;
@@ -12,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -22,6 +25,8 @@ namespace MVC.Controllers
     {
         BookRepository _bokRep;
         CategoryRepository _catRep;
+        OrderRepository _oRep=new OrderRepository();
+        OrderDetailRepository _odRep = new OrderDetailRepository();
 
         public ShoppingController()
         {
@@ -46,7 +51,20 @@ namespace MVC.Controllers
         }
         public ActionResult AddToCart(int id)
         {
-            SepeteYolla(id);
+            Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
+            Book eklenecekUrun = _bokRep.Find(id);
+            CartItem ci = new CartItem()
+            {
+                ID = eklenecekUrun.ID,
+                UnitPrice = eklenecekUrun.Price,
+                BookName = eklenecekUrun.BookName,
+                ImagePath = eklenecekUrun.PhotoPath
+
+            };
+
+            c.SepeteEkle(ci);
+            Session["scart"] = c;
+            TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
             return RedirectToAction("Index", "Home");
 
         }
@@ -87,11 +105,15 @@ namespace MVC.Controllers
         {
             Cart c = Session["scart"] == null ? new Cart() : Session["scart"] as Cart;
             Book eklenecekUrun = _bokRep.Find(id);
-            CartItem ci = new CartItem();
-            ci.BookName = eklenecekUrun.BookName;
-            ci.ID = eklenecekUrun.ID;
-            ci.UnitPrice = eklenecekUrun.Price;
-            ci.ImagePath = eklenecekUrun.PhotoPath;
+            CartItem ci = new CartItem()
+            {
+                ID=eklenecekUrun.ID,
+                UnitPrice=eklenecekUrun.Price,
+                BookName=eklenecekUrun.BookName,
+                ImagePath=eklenecekUrun.PhotoPath
+
+            };
+            
             c.SepeteEkle(ci);
             Session["scart"] = c;
             TempData["mesaj"] = $"{ci.BookName} isimli ürün sepete eklenmiştir";
@@ -109,8 +131,80 @@ namespace MVC.Controllers
             {
                 currentUser = Session["member"] as AppUser;
             }
-            else TempData["anonim"] = "Kullanıcı üye değil";
+            
             return View();
+
+        }
+        //http://localhost:51914/api/Payment/ReceivePayment
+        [HttpPost]
+        public ActionResult ConfirmOrder(OrderVM ovm)
+        {
+            bool sonuc;
+            Cart sepet = Session["scart"] as Cart;
+            ovm.Order.TotalPrice = ovm.PaymentRM.ShoppingPrice = sepet.TotalPrice;
+
+            #region APISection
+
+
+            using (HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:51914/api/");
+                Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Payment/ReceivePayment",ovm.PaymentRM);
+
+                HttpResponseMessage result;
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception ex)
+                {
+
+                    TempData["baglantiRed"] = "Banka baglantiyi reddetti";
+                    return RedirectToAction("ShoppingList");
+                }
+                if (result.IsSuccessStatusCode) sonuc = true;
+                else sonuc = false;
+
+                if (sonuc)
+                {
+                    if (Session["member"]!=null)
+                    {
+                        AppUser kullanici = Session["member"] as AppUser;
+                        ovm.Order.AppUserID = kullanici.ID;
+                    }
+                    _oRep.Add(ovm.Order);
+                    foreach (CartItem item in sepet.Sepetim)
+                    {
+                        OrderDetail od = new OrderDetail();
+                        od.OrderID = ovm.Order.ID;
+                        od.BookID = item.ID;
+                        od.TotalPrice = item.Amount;
+                        _odRep.Add(od);
+
+                        Book StoktanDusurulecek = _bokRep.Find(item.ID);
+                        StoktanDusurulecek.UnitInStock -= item.Amount;
+                        _bokRep.Update(StoktanDusurulecek);
+
+                        // todo: Stoktan fazla alırsa sipariş alınmasın
+                       
+                    }
+
+                    TempData["odeme"] = "Siparişiniz bize ulaşmıştır... Teşekkür ederiz";
+
+                    Session.Remove("scart");
+                    return RedirectToAction("ShoppingList");
+
+                }
+                else
+                {
+                    Task<string> s=result.Content.ReadAsStringAsync();
+                    TempData["sorun"] = s;
+                    return RedirectToAction("ShoppingList");
+                }
+            }
+
+            #endregion
+         
         }
     }
 }

@@ -58,6 +58,8 @@
     <Compile Include="Generic Repository\ConcRep\BookCategoryRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\BookRepository.cs" />
     <Compile Include="Generic Repository\ConcRep\CategoryRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\OrderDetailRepository.cs" />
+    <Compile Include="Generic Repository\ConcRep\OrderRepository.cs" />
     <Compile Include="Generic Repository\IntRep\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

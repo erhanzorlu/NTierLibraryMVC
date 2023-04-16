@@ -10,7 +10,7 @@ namespace Project.ENTITIES.Models
     {
         public string ShippingAddress { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
         public int? AppUserID { get; set; }
         public string NonMemberEmail { get; set; }
         public string NonMemberName { get; set; }

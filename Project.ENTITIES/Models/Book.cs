@@ -15,6 +15,7 @@ namespace Project.ENTITIES.Models
         public decimal? Price { get; set; }
         public int AuthorID { get; set; } 
         public int? CategoryID { get; set; }
+        public int? UnitInStock { get; set; }
 
         //Relational Properties
         public Author Author { get; set; }
